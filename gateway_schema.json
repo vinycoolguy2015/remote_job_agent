@@ -1,0 +1,77 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Job Application Coach API",
+    "version": "1.0.0",
+    "description": "AI agent that finds AWS DevOps jobs and tailors resumes"
+  },
+  "paths": {
+    "/invoke": {
+      "post": {
+        "operationId": "invokeAgent",
+        "summary": "Invoke the Job Application Coach agent",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": ["find_jobs", "tailor_resume", "exclude_company"],
+                    "description": "The action to perform"
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "User identifier for memory/personalization"
+                  },
+                  "job_url": {
+                    "type": "string",
+                    "description": "URL of the job posting to tailor resume for (required for tailor_resume)"
+                  },
+                  "company": {
+                    "type": "string",
+                    "description": "Company name to exclude (required for exclude_company)"
+                  },
+                  "search_term": {
+                    "type": "string",
+                    "description": "Search term for job search (optional, defaults to aws devops)"
+                  }
+                },
+                "required": ["action"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "object",
+                      "description": "Agent response containing jobs list, tailored resume, or confirmation message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid action or missing parameters"
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing JWT token"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}

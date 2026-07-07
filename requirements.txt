@@ -1,0 +1,8 @@
+bedrock-agentcore==1.11.0
+boto3>=1.42.42
+crewai[tools]>=1.14.0
+streamlit>=1.50.0
+requests>=2.31.0
+weasyprint>=62.0
+jinja2>=3.1.0
+python-dotenv>=1.0.0

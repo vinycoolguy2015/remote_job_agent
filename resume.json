@@ -1,0 +1,61 @@
+{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phone": "+1-555-0100",
+    "summary": "Senior DevOps Engineer with 8+ years of experience in AWS, Kubernetes, Terraform, and CI/CD pipelines. Proven track record of reducing deployment times, cutting infrastructure costs, and managing high-availability systems at scale.",
+    "skills": [
+        "AWS (EC2, ECS, EKS, Lambda, S3, RDS, CloudFormation)",
+        "Terraform",
+        "Kubernetes",
+        "Docker",
+        "Jenkins",
+        "GitHub Actions",
+        "Python",
+        "Bash",
+        "Ansible",
+        "Prometheus/Grafana",
+        "CloudWatch",
+        "Linux Administration"
+    ],
+    "experience": [
+        {
+            "company": "TechCorp Inc",
+            "role": "Senior DevOps Engineer",
+            "duration": "2021 - Present",
+            "bullets": [
+                "Managed AWS infrastructure serving 10M+ requests/day using Terraform and CloudFormation",
+                "Built CI/CD pipelines with GitHub Actions reducing deployment time by 60%",
+                "Implemented Kubernetes cluster management for 50+ microservices on EKS",
+                "Led migration from on-premise to AWS, saving $200K/year in infrastructure costs",
+                "Designed disaster recovery strategy achieving 99.99% uptime SLA"
+            ]
+        },
+        {
+            "company": "CloudStart LLC",
+            "role": "DevOps Engineer",
+            "duration": "2018 - 2021",
+            "bullets": [
+                "Designed and maintained Docker-based development environments for 30+ engineers",
+                "Automated infrastructure provisioning using Ansible and Terraform across 3 AWS regions",
+                "Set up monitoring and alerting with CloudWatch and PagerDuty",
+                "Reduced mean time to recovery (MTTR) from 4 hours to 30 minutes",
+                "Implemented GitOps workflow with ArgoCD for Kubernetes deployments"
+            ]
+        },
+        {
+            "company": "WebScale Solutions",
+            "role": "Junior Systems Engineer",
+            "duration": "2016 - 2018",
+            "bullets": [
+                "Managed Linux servers (Ubuntu, CentOS) for web hosting platform",
+                "Wrote Bash scripts to automate routine maintenance tasks",
+                "Assisted in migrating legacy applications to containerized deployments"
+            ]
+        }
+    ],
+    "education": {
+        "degree": "B.S. Computer Science",
+        "school": "University of California, Berkeley",
+        "year": "2016"
+    }
+}

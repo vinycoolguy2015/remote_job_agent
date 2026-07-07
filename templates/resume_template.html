@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #2d3748;
+    line-height: 1.5;
+    padding: 40px 50px;
+    font-size: 10pt;
+}
+
+.header {
+    border-bottom: 3px solid #2b6cb0;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.name {
+    font-size: 24pt;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 5px;
+}
+
+.contact {
+    color: #4a5568;
+    font-size: 9pt;
+}
+
+.contact span {
+    margin-right: 15px;
+}
+
+.section {
+    margin-bottom: 18px;
+}
+
+.section-title {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #2b6cb0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+}
+
+.summary {
+    color: #4a5568;
+    font-size: 9.5pt;
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.skill-tag {
+    background: #ebf4ff;
+    color: #2b6cb0;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 8.5pt;
+    font-weight: 600;
+}
+
+.experience-item {
+    margin-bottom: 14px;
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+}
+
+.exp-role {
+    font-weight: 700;
+    font-size: 10.5pt;
+    color: #1a365d;
+}
+
+.exp-duration {
+    font-size: 9pt;
+    color: #718096;
+}
+
+.exp-company {
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 9.5pt;
+    margin-bottom: 4px;
+}
+
+.exp-bullets {
+    list-style: none;
+    padding-left: 0;
+}
+
+.exp-bullets li {
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 3px;
+    font-size: 9.5pt;
+}
+
+.exp-bullets li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #2b6cb0;
+}
+
+.education-item {
+    font-size: 9.5pt;
+}
+
+.edu-degree {
+    font-weight: 600;
+}
+</style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">{{ resume.name }}</div>
+        <div class="contact">
+            <span>{{ resume.email }}</span>
+            <span>{{ resume.phone }}</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Professional Summary</div>
+        <p class="summary">{{ resume.summary }}</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="skills-grid">
+            {% for skill in resume.skills %}
+            <span class="skill-tag">{{ skill }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Experience</div>
+        {% for exp in resume.experience %}
+        <div class="experience-item">
+            <div class="exp-header">
+                <span class="exp-role">{{ exp.role }}</span>
+                <span class="exp-duration">{{ exp.duration }}</span>
+            </div>
+            <div class="exp-company">{{ exp.company }}</div>
+            <ul class="exp-bullets">
+                {% for bullet in exp.bullets %}
+                <li>{{ bullet }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <div class="section-title">Education</div>
+        <div class="education-item">
+            <span class="edu-degree">{{ resume.education.degree }}</span> — {{ resume.education.school }}, {{ resume.education.year }}
+        </div>
+    </div>
+</body>
+</html>

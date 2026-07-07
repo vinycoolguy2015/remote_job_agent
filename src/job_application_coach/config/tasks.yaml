@@ -1,0 +1,38 @@
+find_jobs_task:
+  description: >
+    Find AWS DevOps remote job listings from WeWorkRemotely.com.
+    Use the search tool to search for: "site:weworkremotely.com AWS DevOps remote jobs"
+    Extract all relevant job listings from the search results.
+    For each job, provide: job title, company name, and the job listing URL.
+    If the search returns no results, try searching for: "weworkremotely.com devops engineer AWS"
+    Return a structured list of all jobs found.
+    IMPORTANT: Return ONLY a valid JSON array with no markdown formatting or extra text.
+  expected_output: >
+    A JSON array (no markdown, no code blocks) of job listings:
+    [{"title": "Senior DevOps Engineer", "company": "Acme Corp", "url": "https://weworkremotely.com/..."}]
+  agent: job_finder
+
+tailor_resume_task:
+  description: >
+    You have been given a target job posting URL: {job_url}
+
+    1. Use the search tool to find details about this job posting and company.
+       Search for the company name and role to understand requirements.
+    2. Read the candidate's base resume provided below.
+    3. Research the company using web search to understand their culture and tech stack.
+    4. Tailor the resume:
+       - Rewrite the summary to match the target role
+       - Rewrite experience bullet points to match the job requirements
+       - Reorder skills to prioritize what the job asks for
+       - Add relevant keywords from the job description
+       - Keep it truthful - only rephrase, don't fabricate experience
+    5. Provide 3-5 interview tips specific to this company and role.
+
+    Base resume:
+    {resume_content}
+
+    IMPORTANT: Return ONLY valid JSON with no markdown formatting, no code blocks, no extra text.
+  expected_output: >
+    A JSON object (no markdown, no code blocks) with two keys:
+    {"resume": {"name": "...", "email": "...", "phone": "...", "summary": "...", "skills": [...], "experience": [{"company": "...", "role": "...", "duration": "...", "bullets": [...]}], "education": {"degree": "...", "school": "...", "year": "..."}}, "interview_tips": ["tip1", "tip2", "tip3"]}
+  agent: resume_tailor

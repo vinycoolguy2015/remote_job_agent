@@ -1,0 +1,43 @@
+{
+  "agentName": "job-application-coach",
+  "runtime": {
+    "type": "CUSTOM",
+    "containerImage": "job-application-coach:latest",
+    "port": 8080,
+    "healthCheckPath": "/",
+    "environmentVariables": {
+      "AWS_REGION": "us-east-1",
+      "S3_RESUME_BUCKET": "my-resume-bucket",
+      "SERPER_API_KEY": "your-serper-api-key"
+    }
+  },
+  "gateway": {
+    "enabled": true,
+    "authConfig": {
+      "type": "JWT",
+      "issuer": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_XXXXXXXX",
+      "audience": "your-cognito-client-id",
+      "jwksUri": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_XXXXXXXX/.well-known/jwks.json"
+    }
+  },
+  "outboundAuth": {
+    "iam": {
+      "enabled": true,
+      "roleArn": "arn:aws:iam::123456789012:role/AgentCoreS3AccessRole",
+      "services": ["s3"]
+    },
+    "apiKeys": [
+      {
+        "name": "serper",
+        "source": "environment",
+        "envVar": "SERPER_API_KEY"
+      }
+    ]
+  },
+  "tools": {
+    "browserTool": {
+      "enabled": true,
+      "allowedDomains": ["weworkremotely.com"]
+    }
+  }
+}

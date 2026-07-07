@@ -170,6 +170,9 @@ def agent_invocation(payload, context):
             result = crew.kickoff()
             try:
                 raw = str(result.raw)
+                # Strip <thinking> tags
+                if "<thinking>" in raw:
+                    raw = raw.split("</thinking>")[-1].strip()
                 # Strip markdown code block wrapper if present
                 if "```json" in raw:
                     raw = raw.split("```json")[1].split("```")[0].strip()
@@ -197,6 +200,8 @@ def agent_invocation(payload, context):
             result = crew.kickoff(inputs={"job_url": job_url, "resume_content": resume_content})
             try:
                 raw = str(result.raw)
+                if "<thinking>" in raw:
+                    raw = raw.split("</thinking>")[-1].strip()
                 if "```json" in raw:
                     raw = raw.split("```json")[1].split("```")[0].strip()
                 elif "```" in raw:

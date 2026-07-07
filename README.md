@@ -124,6 +124,7 @@ aws iam put-role-policy \
         ]
     }'
 ```
+Also add BedrockAgentCoreFullAccess permission
 
 ### Step 4: Create Cognito User Pool (M2M Auth)
 
@@ -333,7 +334,7 @@ The pool details page shows these URLs:
 
 1. Go to **Bedrock Console** → **AgentCore** → **Memory** → **Create**
 2. Memory name: `job_coach_memory`
-3. Leave defaults → **Create**
+3. Set short term memory for 90 days and long term memory strategy as User preference. Once created, enable logging and tracing
 4. Copy the **Memory ID** from the details page (e.g., `job_coach_memory-xYz123`)
 
 This memory stores which companies each user has excluded. When a user clicks "Not Interested" on a company, it's saved here and filtered out in future searches.
@@ -352,6 +353,7 @@ This memory stores which companies each user has excluded. When a user clicks "N
    - `AGENTCORE_MEMORY_ID` = `<Memory ID from Step 5>`
 7. **Create**
 8. Wait for status to become **Active**
+9. Enable logging and tracing
 
 ### Console Step 8: Create AgentCore Gateway with JWT Auth
 
@@ -368,7 +370,7 @@ AgentCore Gateway gives you a direct HTTPS endpoint — no Lambda or API Gateway
    - JWKS URI: Token signing key URL from Cognito pool details (e.g., `https://cognito-idp.us-east-1.amazonaws.com/<pool-id>/.well-known/jwks.json`)
    - Audience: your Cognito **Client ID**
 5. Link to your agent runtime: `job-application-coach`
-6. **Create**
+6. **Create** and enable logging and tracing
 7. Copy the **Gateway endpoint URL** (format: `https://<name>-<id>.gateway.bedrock-agentcore.us-east-1.amazonaws.com`)
 
 This is the URL Streamlit calls directly with the M2M JWT token.

@@ -56,6 +56,9 @@ print("PARSED JSON:")
 print("=" * 60)
 try:
     raw = str(result.raw)
+    # Strip <thinking>...</thinking> tags
+    if "<thinking>" in raw:
+        raw = raw.split("</thinking>")[-1].strip()
     # Strip markdown code block wrapper
     if "```json" in raw:
         raw = raw.split("```json")[1].split("```")[0].strip()
